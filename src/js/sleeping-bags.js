@@ -47,7 +47,6 @@ function setupPaginationControls() {
         if (currentPage > 1) {
             currentPage--;
             renderProducts(currentPage);
-            // Optionally fetch new data using a modified fetchProductData function if necessary
         }
     });
 
@@ -55,7 +54,6 @@ function setupPaginationControls() {
         if (currentPage < totalPages) {
             currentPage++;
             renderProducts(currentPage);
-            // Optionally fetch new data using a modified fetchProductData function if necessary
         }
     });
 }
