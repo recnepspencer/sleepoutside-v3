@@ -6,13 +6,16 @@ function convertToJson(res) {
   }
 }
 
-export function getData(category = "tents") {
+export function getData(category) {
   return fetch(`../json/${category}.json`)
     .then(convertToJson)
-    .then((data) => data);
+    .then((data) => {
+      // Assuming the array is stored under a key 'Result'
+      return data.Result || []; // This line ensures you always return an array, even if Result is not found.
+    });
 }
 
-export async function findProductById(id) {
-  const products = await getData();
+export async function findProductById(id, category) {
+  const products = await getData(category);
   return products.find((item) => item.Id === id);
 }

@@ -1,3 +1,5 @@
+import { findProductById } from "./productData.mjs";
+
 // wrapper for querySelector...returns matching element
 export function qs(selector, parent = document) {
   return parent.querySelector(selector);
@@ -29,4 +31,21 @@ export function setClick(selector, callback) {
     callback();
   });
   qs(selector).addEventListener("click", callback);
+}
+
+export function addProductToCart(item) {
+  let cartItems = getLocalStorage("so-cart");
+  if (!Array.isArray(cartItems)) {
+    console.error('Cart items is not an array:', cartItems);
+    cartItems = [];
+  }
+  cartItems.push(item);  // Add new item
+  setLocalStorage("so-cart", cartItems);
+}
+
+// Define and export the addToCartHandler
+export async function addToCartHandler(e, category) {
+  const productId = e.target.dataset.id;
+  const product = await findProductById(productId, category);
+  addProductToCart(product);
 }
