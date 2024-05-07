@@ -44,8 +44,7 @@ export function addProductToCart(item) {
 }
 
 // Define and export the addToCartHandler
-export async function addToCartHandler(e, category) {
-  const productId = e.target.dataset.id;
+export async function addToCartHandler(e, productId, category) {
   const product = await findProductById(productId, category);
   addProductToCart(product);
 }
