@@ -49,3 +49,11 @@ export async function addToCartHandler(e, productId, category) {
   const product = await findProductById(productId, category);
   addProductToCart(product);
 }
+
+//Get parameter for URL
+export function getParam(param) {
+  const queryString = window.location.search;
+  const urlParams = new URLSearchParams(queryString);
+  const param = urlParams.get(`${param}`)
+  return param;
+}
