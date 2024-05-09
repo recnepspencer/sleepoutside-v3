@@ -26,11 +26,12 @@ export function setLocalStorage(key, data) {
 }
 // set a listener for both touchend and click
 export function setClick(selector, callback) {
-  qs(selector).addEventListener("touchend", (event) => {
+  const element = qs(selector);
+  element.addEventListener("touchend", (event) => {
     event.preventDefault();
     callback();
   });
-  qs(selector).addEventListener("click", callback);
+  element.addEventListener("click", callback);
 }
 
 export function addProductToCart(item) {
@@ -47,4 +48,12 @@ export function addProductToCart(item) {
 export async function addToCartHandler(e, productId, category) {
   const product = await findProductById(productId, category);
   addProductToCart(product);
+}
+
+//Get parameter for URL
+export function getParam(param) {
+  const queryString = window.location.search;
+  const urlParams = new URLSearchParams(queryString);
+  const param = urlParams.get(`${param}`)
+  return param;
 }
