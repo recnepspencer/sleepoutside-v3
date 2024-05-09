@@ -50,10 +50,11 @@ export async function addToCartHandler(e, productId, category) {
   addProductToCart(product);
 }
 
-//Get parameter for URL
 export function getParam(param) {
   const queryString = window.location.search;
   const urlParams = new URLSearchParams(queryString);
-  const param = urlParams.get(`${param}`)
+  param = urlParams.get(param);
   return param;
 }
+
+const productId = getParam('id');
