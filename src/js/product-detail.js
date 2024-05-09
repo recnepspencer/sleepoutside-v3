@@ -23,7 +23,8 @@ document.addEventListener("DOMContentLoaded", () => {
   }
   
   async function fetchProductData(productId) {
-    const category = "sleeping-bags";
+    const params = new URLSearchParams(window.location.search);
+    const category = params.get('category') || 'default-category';
     try {
       const product = await findProductById(productId, category);
       return product;
@@ -120,7 +121,31 @@ document.addEventListener("DOMContentLoaded", () => {
     mainImageElement.src = src;
     mainImageElement.alt = alt;
   }
+
+  function changeQuantity(change) {
+    const quantityElement = document.getElementById("quantity");
+    let quantity = parseInt(quantityElement.textContent);
   
+    quantity += change;
+    
+    // Prevent the quantity from going below 1
+    if (quantity < 1) quantity = 1;
+  
+    quantityElement.textContent = quantity;
+  }
+  
+  function setupQuantityControls() {
+    const decreaseButton = document.querySelector('#quantity-control button.decrease');
+    const increaseButton = document.querySelector('#quantity-control button.increase');
+  
+    decreaseButton.addEventListener('click', () => changeQuantity(-1));
+    increaseButton.addEventListener('click', () => changeQuantity(1));
+  }
+
+  function setupAddToCartButton(productId) {
+    const addToCartButton = document.getElementById('addToCart');
+    addToCartButton.addEventListener('click', () => addToCartHandler(productId));
+  }
   
   function displayProduct(product) {
 
@@ -139,12 +164,45 @@ document.addEventListener("DOMContentLoaded", () => {
       </div>
       <p>Colors:</p>
       <div id="color-options"></div>
+      <div id="quantity-control">
+        <button class="decrease">-</button>
+        <span id="quantity">1</span>
+        <button class="increase">+</button>
+      </div>
       <div class="product-detail__add">
-        <button id="addToCart" data-id="${product.Id} onclick=addToCartHandler()">Add to Cart</button>
+        <button id="addToCart" data-id="${product.Id}">Add to Cart</button>
       </div>
     `;
   
     createColorButtons(product);
     setupImageSwitching(product);
+    setupQuantityControls();
+    setupAddToCartButton(product.Id);
+    
   }
   
+
+function addToCartHandler() {
+  const productContainer = document.getElementById("product-container");
+  const quantity = document.getElementById("quantity").textContent;
+  const colorButtons = document.querySelectorAll('.color-button');
+  let selectedColor = '';
+
+  // Find which color button is selected
+  colorButtons.forEach(button => {
+    if (button.style.backgroundColor === 'gray') {
+      selectedColor = button.textContent;
+    }
+  });
+
+  // Assuming product details are stored in a data attribute or some accessible variable
+  const productId = document.getElementById("addToCart").getAttribute('data-id');
+
+  const productDetails = {
+    productId: productId,
+    quantity: quantity,
+    selectedColor: selectedColor,
+  };
+
+  console.log("Adding to cart:", productDetails);
+}
