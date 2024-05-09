@@ -30,7 +30,6 @@ function renderProducts(page) {
             <p>Price: $${product.FinalPrice}</p>
         `;
         productElement.addEventListener('click', () => {
-            // Ensuring the category is passed through the URL
             window.location.href = `product-detail.html?id=${product.Id}&category=${currentCategory}`;
         });
         grid.appendChild(productElement);
