@@ -14,7 +14,7 @@ function renderProducts(page) {
     const grid = document.getElementById('product-grid');
     grid.innerHTML = '';
 
-    const startIndex = (page - 1) * 24;  // Assuming ITEMS_PER_PAGE is always 24
+    const startIndex = (page - 1) * 24;  // Assuming ITEMS_PaER_PAGE is always 24
     const endIndex = startIndex + 24;
     const itemsToDisplay = productsData.Result.slice(startIndex, endIndex);
 
