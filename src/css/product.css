@@ -1,6 +1,6 @@
 #main-image {
     max-height: 50vh;
-    
+
 }
 .strikethrough {
     text-decoration: line-through;
@@ -31,4 +31,13 @@
   /* Optionally, remove the right margin for the last image */
   .extra-images img:last-child {
     margin-right: 0;
+  }
+
+
+  #color-options button {
+    background-color: white;
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 5px;
+    margin: 5px;
   }
