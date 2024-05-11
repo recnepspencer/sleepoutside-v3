@@ -1,43 +1,41 @@
 #main-image {
-    max-height: 50vh;
-
+  max-height: 50vh;
 }
 .strikethrough {
-    text-decoration: line-through;
-    color: red;
-  }
+  text-decoration: line-through;
+  color: red;
+}
 
-  .extra-images {
-    display: flex;
-    overflow-x: scroll; /* Ensures always scrollable */
-    -webkit-overflow-scrolling: touch; /* Smooth scrolling on touch devices */
-    padding: none;
-    white-space: nowrap;
-    scroll-snap-type: x mandatory; /* Optional: Enhances the scrolling experience by snapping images into place */
-    padding: none;
-  }
-  
-  .extra-images img {
-    flex: 0 0 auto; /* Prevents flex items from growing or shrinking */
-    width: 100px;
-    height: 100px;
-    object-fit: cover;
-    border: 1px solid black;
-    border-radius: 5px;
-    margin-right: 10px;
-    scroll-snap-align: start;
-  }
-  
-  /* Optionally, remove the right margin for the last image */
-  .extra-images img:last-child {
-    margin-right: 0;
-  }
+.extra-images {
+  display: flex;
+  overflow-x: scroll; /* Ensures always scrollable */
+  -webkit-overflow-scrolling: touch; /* Smooth scrolling on touch devices */
+  padding: none;
+  white-space: nowrap;
+  scroll-snap-type: x mandatory; /* Optional: Enhances the scrolling experience by snapping images into place */
+  padding: none;
+}
 
+.extra-images img {
+  flex: 0 0 auto; /* Prevents flex items from growing or shrinking */
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border: 1px solid black;
+  border-radius: 5px;
+  margin-right: 10px;
+  scroll-snap-align: start;
+}
 
-  #color-options button {
-    background-color: white;
-    border: 1px solid black;
-    border-radius: 5px;
-    padding: 5px;
-    margin: 5px;
-  }
+/* Optionally, remove the right margin for the last image */
+.extra-images img:last-child {
+  margin-right: 0;
+}
+
+#color-options button {
+  background-color: white;
+  border: 1px solid black;
+  border-radius: 5px;
+  padding: 5px;
+  margin: 5px;
+}
