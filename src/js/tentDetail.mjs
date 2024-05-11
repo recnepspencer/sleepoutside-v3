@@ -1,6 +1,6 @@
 // Import necessary functions from other modules
 import { findProductById } from "./productData.mjs";
-import { setLocalStorage } from "./utils.mjs";
+import { addProductToCart } from "./utils.mjs";
 
 let product = {};
 
@@ -31,7 +31,7 @@ export default async function tentDetails(productId, selector) {
 // Function to handle adding products to the cart
 function addToCart() {
   console.log("Adding product to cart:", product);
-  setLocalStorage("so-cart", product);
+  addProductToCart(product)
 }
 
 // Template function to render HTML content for the product details

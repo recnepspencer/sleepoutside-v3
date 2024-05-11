@@ -3,12 +3,12 @@
 // document.addEventListener("DOMContentLoaded", () => {
 //     const params = new URLSearchParams(window.location.search);
 //     const productId = params.get("id");
-  
+
 //     if (productId) {
 //       initializeProductPage(productId);
 //     }
 //   });
-  
+
 //   async function initializeProductPage(productId) {
 //     try {
 //       const product = await fetchProductData(productId);
@@ -21,7 +21,7 @@
 //       console.error("Error initializing product page:", error);
 //     }
 //   }
-  
+
 //   async function fetchProductData(productId) {
 //     const params = new URLSearchParams(window.location.search);
 //     const category = params.get('category') || 'default-category';
@@ -30,19 +30,19 @@
 //       return product;
 //     } catch (error) {
 //       console.error("Error fetching product data:", error);
-//       return null; 
+//       return null;
 //     }
 //   }
 //   function getProperImageSize(product) {
 //     const screenWidth = window.innerWidth;
-    
+
 //     if (screenWidth <= 480) {
 //       return product.Images.PrimarySmall;
-//     } else if (screenWidth <= 768) { 
+//     } else if (screenWidth <= 768) {
 //       return product.Images.PrimaryMedium;
 //     } else if (screenWidth <= 1024) {
 //       return product.Images.PrimaryLarge;
-//     } else { 
+//     } else {
 //       return product.Images.PrimaryExtraLarge;
 //     }
 //   }
@@ -76,7 +76,6 @@
 //       colorContainer.appendChild(colorButton);
 //     });
 //   }
-  
 
 //   function displayOtherImages(product) {
 //     let htmlContent = '';
@@ -115,7 +114,6 @@
 //     });
 //   }
 
-
 //   function changeMainImage(src, alt) {
 //     const mainImageElement = document.querySelector('#main-image');
 //     mainImageElement.src = src;
@@ -125,19 +123,19 @@
 //   function changeQuantity(change) {
 //     const quantityElement = document.getElementById("quantity");
 //     let quantity = parseInt(quantityElement.textContent);
-  
+
 //     quantity += change;
-    
+
 //     // Prevent the quantity from going below 1
 //     if (quantity < 1) quantity = 1;
-  
+
 //     quantityElement.textContent = quantity;
 //   }
-  
+
 //   function setupQuantityControls() {
 //     const decreaseButton = document.querySelector('#quantity-control button.decrease');
 //     const increaseButton = document.querySelector('#quantity-control button.increase');
-  
+
 //     decreaseButton.addEventListener('click', () => changeQuantity(-1));
 //     increaseButton.addEventListener('click', () => changeQuantity(1));
 //   }
@@ -146,11 +144,11 @@
 //     const addToCartButton = document.getElementById('addToCart');
 //     addToCartButton.addEventListener('click', () => addToCartHandler(productId));
 //   }
-  
+
 //   function displayProduct(product) {
 
 //     const container = document.getElementById("product-container");
-    
+
 //     const properImageSrc = getProperImageSize(product);
 
 //     container.innerHTML = `
@@ -173,14 +171,13 @@
 //         <button id="addToCart" data-id="${product.Id}">Add to Cart</button>
 //       </div>
 //     `;
-  
+
 //     createColorButtons(product);
 //     setupImageSwitching(product);
 //     setupQuantityControls();
 //     setupAddToCartButton(product.Id);
-    
+
 //   }
-  
 
 // function addToCartHandler() {
 //   const productContainer = document.getElementById("product-container");
