@@ -110,6 +110,27 @@ button {
   fill: gray;
 }
 
+#backpack {
+  position: relative;
+  display: inline-block;
+}
+
+#backpack svg {
+  display: block;
+  max-width: 100%;
+}
+
+#backpack p {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  background-color: rgb(238, 177, 65);
+  border-radius: 50%;
+  padding: 0 3px 0 3px;
+  text-decoration: none;
+  color: black;
+}
+
 /* End cart icon styles */
 
 .mission {
