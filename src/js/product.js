@@ -1,15 +1,21 @@
-import { setLocalStorage, getLocalStorage, setClick, getParam } from "./utils.mjs";
+import {
+  setLocalStorage,
+  getLocalStorage,
+  setClick,
+  getParam,
+} from "./utils.mjs";
 import { findProductById } from "./productData.mjs";
 import tentDetails from "./tentDetail.mjs";
+import { cartSuperscript } from "./cart-superscript";
 
 //get , set , update the local storage
 export function addProductToCart(product) {
   // console.log(product);
   let cart = [];
   if (getLocalStorage("so-cart")) {
-      getLocalStorage("so-cart").forEach(oldCartItem => {
-        cart.push(oldCartItem);
-      });
+    getLocalStorage("so-cart").forEach((oldCartItem) => {
+      cart.push(oldCartItem);
+    });
   }
   if (!Array.isArray(cart)) {
     cart = [];
