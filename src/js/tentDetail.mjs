@@ -1,6 +1,6 @@
 // Import necessary functions from other modules
 import { findProductById } from "./productData.mjs";
-import { addProductToCart } from "./utils.mjs";
+import { addProductToCart } from "./product.js";
 
 let product = {};
 

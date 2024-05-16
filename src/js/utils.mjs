@@ -34,21 +34,7 @@ export function setClick(selector, callback) {
   element.addEventListener("click", callback);
 }
 
-export function addProductToCart(item) {
-  let cartItems = getLocalStorage("so-cart");
-  if (!Array.isArray(cartItems)) {
-    console.error('Cart items is not an array:', cartItems);
-    cartItems = [];
-  }
-  cartItems.push(item);  // Add new item
-  setLocalStorage("so-cart", cartItems);
-}
 
-// Define and export the addToCartHandler
-export async function addToCartHandler(e, productId, category) {
-  const product = await findProductById(productId, category);
-  addProductToCart(product);
-}
 
 export function getParam(param) {
   const queryString = window.location.search;
