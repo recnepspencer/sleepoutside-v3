@@ -1,6 +1,6 @@
-import { setLocalStorage, getLocalStorage, setClick, getParam } from "./utils.mjs";
+import { setLocalStorage, getLocalStorage, setClick, getParam, addProductToCart } from "./utils.mjs";
 import { findProductById } from "./productData.mjs";
-import { cartSuperscript } from "./cart-superscript";
+import tentDetails from "./tentDetail.mjs";
 
 //get , set , update the local storage
 function addProductToCart(product) {
@@ -25,7 +25,7 @@ async function addToCartHandler(e) {
   // console.log(e.target.dataset.id);
   const product = await findProductById(e.target.dataset.id);
   addProductToCart(product);
-//   console.log("running");
+  //   console.log("running");
 }
 
 // add listener to Add to Cart button
@@ -33,6 +33,5 @@ document
   .getElementById("addToCart")
   .addEventListener("click", addToCartHandler);
 
-
-// add listener to Add to Cart button
-setClick ("#addToCart", addToCartHandler); // Attach event listener
+const productId = getParam("product");
+tentDetails(productId, ".product-detail");
