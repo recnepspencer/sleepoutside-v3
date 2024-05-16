@@ -53,7 +53,7 @@ export async function addToCartHandler(e, productId, category) {
 export function getParam(param) {
   const queryString = window.location.search;
   const urlParams = new URLSearchParams(queryString);
-  param = urlParams.get(param);
+  param = urlParams.get(`${param}`)
   return param;
 }
 
