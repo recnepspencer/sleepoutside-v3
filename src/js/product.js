@@ -1,6 +1,6 @@
 import { setLocalStorage, getLocalStorage, setClick, getParam } from "./utils.mjs";
-import { findProductById } from "./productData.mjs";
-import tentDetails from "./tentDetail.mjs";
+import { findProductById } from "./product-data.mjs";
+import tentDetails from "./tent-detail.mjs";
 
 //get , set , update the local storage
 export function addProductToCart(product) {

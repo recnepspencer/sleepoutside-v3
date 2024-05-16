@@ -1,4 +1,4 @@
-import { findProductById } from "./productData.mjs";
+import { findProductById } from "./product-data.mjs";
 
 // wrapper for querySelector...returns matching element
 export function qs(selector, parent = document) {

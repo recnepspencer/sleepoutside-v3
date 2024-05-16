@@ -1,4 +1,4 @@
-// import { findProductById } from "./productData.mjs";
+// import { findProductById } from "./product-data.mjs";
 
 // document.addEventListener("DOMContentLoaded", () => {
 //     const params = new URLSearchParams(window.location.search);
