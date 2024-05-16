@@ -2,14 +2,13 @@
 import { findProductById } from "./productData.mjs";
 import { addProductToCart } from "./product.js";
 
-let product = {};
 
 // Define and export the default function for handling tent details
 export default async function tentDetails(productId, selector) {
   console.log("Product ID:", productId);
   
   // Fetch product details using the product ID
-  product = await findProductById(productId);
+  let product = await findProductById(productId);
   if (!product) {
     console.error("Product not found");
     return;
@@ -17,19 +16,19 @@ export default async function tentDetails(productId, selector) {
 
   // Select the HTML element and insert product details using a template
   const el = document.querySelector(selector);
-  el.insertAdjacentHTML("afterBegin", productDetailsTemplate(product));
+  el.innerHTML = productDetailsTemplate(product);
   
   // Add an event listener to the 'Add to Cart' button
   const addToCartButton = el.querySelector("#addToCart");
   if (addToCartButton) {
-    addToCartButton.addEventListener("click", addToCart);
+    addToCartButton.addEventListener("click", () => {addToCart(product)});
   } else {
     console.error("Add to Cart button not found");
   }
 }
 
 // Function to handle adding products to the cart
-function addToCart() {
+function addToCart(product) {
   console.log("Adding product to cart:", product);
   addProductToCart(product)
 }

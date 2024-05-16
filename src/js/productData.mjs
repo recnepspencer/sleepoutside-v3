@@ -12,8 +12,6 @@ export function getData(category = 'tents') {
     .then((data) => {
       return data.Result || []; 
     });
-    
-
 }
 
 export async function findProductById(id, category) {

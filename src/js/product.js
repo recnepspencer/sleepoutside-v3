@@ -29,6 +29,7 @@ export function addProductToCart(product) {
 // add to cart button event handler
 async function addToCartHandler(e) {
   // console.log(e.target.dataset.id);
+  console.log(e)
   const product = await findProductById(e.target.dataset.id);
   addProductToCart(product);
   //   console.log("running");
@@ -38,6 +39,6 @@ const productId = getParam("product");
 tentDetails(productId, ".product-detail");
 
 // add listener to Add to Cart button
-document
-  .getElementById("addToCart")
-  .addEventListener("click", addToCartHandler);
+// document
+//   .getElementById("addToCart")
+//   .addEventListener("click", addToCartHandler);
