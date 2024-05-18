@@ -25,7 +25,6 @@ export function addProductToCart(product) {
   setLocalStorage("so-cart", cart);
   cartSuperscript();
 }
-
 // add to cart button event handler
 async function addToCartHandler(e) {
   // console.log(e.target.dataset.id);

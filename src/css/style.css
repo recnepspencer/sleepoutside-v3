@@ -249,3 +249,22 @@ footer {
   font-size: var(--small-font);
   padding: 1em;
 }
+
+.strikethrough {
+  text-decoration: line-through;
+  color: red;
+}
+
+#color-options {
+  display: flex;
+  justify-content: center;
+}
+
+#color-options button {
+  color: black;
+  background-color: white;
+  border: 1px solid black;
+  border-radius: 5px;
+  padding: 5px;
+  margin: 5px;
+}
