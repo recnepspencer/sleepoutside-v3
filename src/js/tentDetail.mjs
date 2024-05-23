@@ -1,6 +1,9 @@
 // Import necessary functions from other modules
 import { findProductById } from "./productData.mjs";
 import { addProductToCart } from "./product.js";
+import { cartCount } from "./stores.mjs";
+import { getCartCount } from "./utils.mjs";
+
 
 // Define and export the default function for handling tent details
 export default async function tentDetails(productId, selector) {
@@ -35,6 +38,7 @@ export default async function tentDetails(productId, selector) {
 function addToCart(product) {
   console.log("Adding product to cart:", product);
   addProductToCart(product);
+  cartCount.set(getCartCount());
 }
 
 // Function to apply a discount if the product is on clearance
