@@ -1,4 +1,6 @@
 import { findProductById } from "./productData.mjs";
+import MainHeader from './components/MainHeader.svelte';
+import MainFooter from './components/MainFooter.svelte';
 
 // wrapper for querySelector...returns matching element
 export function qs(selector, parent = document) {
@@ -41,6 +43,32 @@ export function getParam(param) {
   const urlParams = new URLSearchParams(queryString);
   param = urlParams.get(`${param}`)
   return param;
+}
+
+export function renderHeaderFooter() {
+  const headerElement = document.getElementById('main-header');
+  const footerElement = document.getElementById('main-footer');
+  
+  if (headerElement) {
+    new MainHeader({
+      target: headerElement,
+    })
+  }
+
+  if (footerElement) {
+    new MainFooter({
+      target: footerElement
+    })
+  }
+}
+
+export function getCartCount() {
+  let cartItems = getLocalStorage("so-cart");
+  if (!Array.isArray(cartItems) && cartItems != null) {
+    return 1;
+  }
+  return cartItems.length || null;
+
 }
 
 const productId = getParam('id');
