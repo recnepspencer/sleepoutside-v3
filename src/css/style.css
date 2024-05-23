@@ -268,3 +268,10 @@ footer {
   padding: 5px;
   margin: 5px;
 }
+
+#welcome-banner {
+  display: none;
+  text-align: center;
+  font-size: 28px;
+  background-color: #c1a227;
+}
