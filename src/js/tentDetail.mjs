@@ -5,16 +5,19 @@ import { addProductToCart } from "./product.js";
 // Define and export the default function for handling tent details
 export default async function tentDetails(productId, selector) {
   console.log("Product ID:", productId);
+  
+  // Select the HTML element
+  const el = document.querySelector(selector);
 
   // Fetch product details using the product ID
   let product = await findProductById(productId);
   if (!product) {
-    console.error("Product not found");
+    // Insert error message
+    el.innerHTML = notFoundHTML()
     return;
   }
 
-  // Select the HTML element and insert product details using a template
-  const el = document.querySelector(selector);
+  // Insert product details using a template
   el.innerHTML = productDetailsTemplate(product);
 
   // Add an event listener to the 'Add to Cart' button
@@ -83,4 +86,12 @@ function productDetailsTemplate(product) {
     </div>
     <div id="color-options"></div>
   `;
+}
+
+function notFoundHTML() {
+  return `
+    <h2>Error: Product Not Found</h2>
+    <p>Unfortunately, the product was not found. Please ensure that the product's ID is correct in the URL.</p>
+    <a href="../index.html">Home</a>
+  `
 }
