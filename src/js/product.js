@@ -5,7 +5,7 @@ import {
   getParam,
 } from "./utils.mjs";
 import { findProductById } from "./productData.mjs";
-import tentDetails from "./tentDetail.mjs";
+//import tentDetails from "./tentDetail.mjs";
 import { cartSuperscript } from "./cart-superscript";
 
 //get , set , update the local storage
@@ -35,7 +35,7 @@ async function addToCartHandler(e) {
 }
 
 const productId = getParam("product");
-tentDetails(productId, ".product-detail");
+//tentDetails(productId, ".product-detail");
 
 // add listener to Add to Cart button
 // document
