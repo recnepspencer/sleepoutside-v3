@@ -4,10 +4,10 @@
 
 <div class="logo">
     <img src="/images/noun_Tent_2517.svg" alt="tent for logo" />
-    <a href="index.html"> Sleep<span class="highlight">Outside</span></a>
+    <a href="../index.html"> Sleep<span class="highlight">Outside</span></a>
 </div>
 <div class="cart">
-    <a href="cart/index.html">
+    <a href="../cart/index.html">
     <div id="backpack">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
         <path

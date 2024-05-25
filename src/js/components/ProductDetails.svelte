@@ -8,6 +8,7 @@
     let productId = getParam("product");
     let product = {};
     let selectedColor = '';
+    let errorPage = false
 
     console.log("Product ID:", productId);
 
@@ -16,6 +17,9 @@
         if (productId) {
             product = await findProductById(productId);
             console.log("Product data:", product);
+            if (!product) {
+                errorPage = true
+            }
         } else {
             console.error("Product ID not found in URL");
         }
@@ -64,7 +68,7 @@
     }
 </style>
 
-{#if product.Name}
+{#if product?.Name}
     <div class="product-detail">
         <h3>{product.Brand.Name}</h3>
         <h2>{product.NameWithoutBrand}</h2>
@@ -78,6 +82,10 @@
         </div>
         <button id="addToCart" on:click={addToCart}>Add to Cart</button>
     </div>
+{:else if errorPage}
+    <h2>Error: Product Not Found</h2>
+    <p>Unfortunately, the product was not found. Please ensure that the product's ID is correct in the URL.</p>
+    <a href="../index.html">Home</a>
 {:else}
     <p>Loading product details...</p>
 {/if}
