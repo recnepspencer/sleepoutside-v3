@@ -8,6 +8,7 @@
     let productId = getParam("product");
     let product = {};
     let selectedColor = '';
+    let quantity = 1;
 
     console.log("Product ID:", productId);
 
@@ -37,6 +38,7 @@
         const cartItem = {
             ...product,
             selectedColor: selectedColor,
+            quantity: quantity,
             Colors: product.Colors.filter(color => color.ColorName === selectedColor)
         };
         addProductToCart(cartItem);
@@ -76,6 +78,8 @@
                 <button class="color-button" on:click={toggleColor}>{color.ColorName}</button>
             {/each}
         </div>
+        <label for="quantity">Quantity:</label>
+        <input type="number" id="quantity" bind:value={quantity} min="1" />
         <button id="addToCart" on:click={addToCart}>Add to Cart</button>
     </div>
 {:else}

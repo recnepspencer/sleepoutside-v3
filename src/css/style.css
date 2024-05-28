@@ -93,6 +93,7 @@ button {
 }
 .divider {
   border-bottom: 2px solid var(--primary-color);
+  width: 100%;
 }
 /* End utility classes */
 
