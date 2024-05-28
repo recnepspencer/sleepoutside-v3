@@ -4,13 +4,20 @@ import { visitCounter } from "./welcome-banner";
 import { getParam } from "./utils";
 
 // Set localStorage variable for visit count.
-window.addEventListener("DOMContentLoaded", () => {
-  visitCounter();
-});
+window.addEventListener('DOMContentLoaded', () => {
+    visitCounter();
+})
 
 const productId = getParam("product");
 
-new ProductDetails({
-  target: document.querySelector(".product-detail"),
-  props: { productId },
-});
+if (productId) {
+    new ProductDetails({
+        target: document.querySelector(".product-detail"),
+        props: { productId }
+    });
+} else {
+    new ProductList({
+        target: document.querySelector(".products"),
+        props: { category: category }
+    });
+}
