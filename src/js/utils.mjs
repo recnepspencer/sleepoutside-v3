@@ -41,8 +41,7 @@ export function setClick(selector, callback) {
 export function getParam(param) {
   const queryString = window.location.search;
   const urlParams = new URLSearchParams(queryString);
-  param = urlParams.get(`${param}`)
-  return param;
+  return urlParams.get(param);
 }
 
 export function renderHeaderFooter() {
