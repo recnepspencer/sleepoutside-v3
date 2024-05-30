@@ -11,7 +11,7 @@ function convertToJson(res) {
   }
 }
 
-export async function getData(category) {
+export async function getProductsByCategory(category) {
   category = category || getParam("category");
   const response = await fetch(baseURL + `products/search/${category}`);
   const data = await convertToJson(response);
@@ -19,6 +19,6 @@ export async function getData(category) {
 }
 
 export async function findProductById(id, category) {
-  const products = await getData(category);
+  const products = await getProductsByCategory(category);
   return products.find((item) => item.Id === id);
 }

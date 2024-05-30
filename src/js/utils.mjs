@@ -1,4 +1,4 @@
-import { findProductById } from "./productData.mjs";
+import { findProductById } from "./externalServices.mjs";
 import MainHeader from './components/MainHeader.svelte';
 import MainFooter from './components/MainFooter.svelte';
 

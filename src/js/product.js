@@ -4,7 +4,7 @@ import {
   setClick,
   getParam,
 } from "./utils.mjs";
-import { findProductById } from "./productData.mjs";
+import { findProductById } from "./externalServices.mjs";
 //import tentDetails from "./tentDetail.mjs";
 import { cartSuperscript } from "./cart-superscript";
 

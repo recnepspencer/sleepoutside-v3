@@ -12,6 +12,14 @@
     let shipping = 10 + (quantity - 1) * 2
     let tax = subtotal * .06;
     let orderTotal = subtotal + tax + shipping;
+
+    function packageItems(items) {
+
+    }
+
+    function handleSubmit(e) {
+        packageItems(items);
+    }
 </script>
 
 
