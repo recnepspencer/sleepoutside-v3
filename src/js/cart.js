@@ -23,13 +23,24 @@ function renderCartContents() {
 function applyDiscount(product) {
   if (product.IsClearance) {
     const discountedPrice = product.FinalPrice * 0.8;
-    return { finalPrice: discountedPrice, displayPrice: `<span class="strikethrough">${product.ListPrice}</span> $${discountedPrice.toFixed(2)}` };
+    return {
+      finalPrice: discountedPrice,
+      displayPrice: `<span class="strikethrough">${
+        product.ListPrice
+      }</span> $${discountedPrice.toFixed(2)}`,
+    };
   }
-  return { finalPrice: product.FinalPrice, displayPrice: `$${product.FinalPrice}` };
+  return {
+    finalPrice: product.FinalPrice,
+    displayPrice: `$${product.FinalPrice}`,
+  };
 }
 
 function cartItemTemplate(item) {
-  const colorName = item.Colors && item.Colors.length > 0 ? item.Colors[0].ColorName : "No color";
+  const colorName =
+    item.Colors && item.Colors.length > 0
+      ? item.Colors[0].ColorName
+      : "No color";
   const { displayPrice } = applyDiscount(item);
 
   return `<li class="cart-card divider">
