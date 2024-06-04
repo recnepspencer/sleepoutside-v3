@@ -45,48 +45,60 @@
         <div class="signup-form">
           <h2>Sign Up for Our Newsletter</h2>
           <form action="#" method="post">
-              <div class="form-group">
-                  <label for="email">Email address:</label>
-                  <input type="email" id="email" name="email" required>
-              </div>
-              <div class="form-group">
-                  <input type="submit" value="Subscribe">
-              </div>
+            <div class="form-group">
+              <label for="email">Email address:</label>
+              <input type="email" id="email" name="email" required />
+            </div>
+            <div class="form-group">
+              <input type="submit" value="Subscribe" />
+            </div>
           </form>
         </div>
       </section>
-      <button id="showButton">New to Sleep Outside? Register an Account!</button>
+      <button id="showButton">
+        New to Sleep Outside? Register an Account!
+      </button>
       <section class="form-container">
         <div id="registration-form">
-            <h2>User Registration</h2>
-            <form id="registrationForm" action="#" method="post">
-                <div class="form-group">
-                    <label for="firstName">First Name:</label>
-                    <input type="text" id="firstName" name="firstName" required>
-                </div>
-                <div class="form-group">
-                    <label for="lastName">Last Name:</label>
-                    <input type="text" id="lastName" name="lastName" required>
-                </div>
-                <div class="form-group">
-                    <label for="email">Email address:</label>
-                    <input type="email" id="email" name="email" required>
-                </div>
-                <div class="form-group">
-                    <label for="password">Password:</label>
-                    <input type="password" id="password" name="password" required
-                           pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=!]).{8,}"
-                           title="Password must be at least 8 characters long, contain at least one uppercase letter, one lowercase letter, one number, and one special character.">
-                </div>
-                <div class="form-group">
-                    <label for="confirmPassword">Confirm Password:</label>
-                    <input type="password" id="confirmPassword" name="confirmPassword" required>
-                    <span id="error" class="error"></span>
-                </div>
-                <div class="form-group">
-                    <input type="submit" value="Register">
-                </div>
-            </form>
+          <h2>User Registration</h2>
+          <form id="registrationForm" action="#" method="post">
+            <div class="form-group">
+              <label for="firstName">First Name:</label>
+              <input type="text" id="firstName" name="firstName" required />
+            </div>
+            <div class="form-group">
+              <label for="lastName">Last Name:</label>
+              <input type="text" id="lastName" name="lastName" required />
+            </div>
+            <div class="form-group">
+              <label for="email">Email address:</label>
+              <input type="email" id="email" name="email" required />
+            </div>
+            <div class="form-group">
+              <label for="password">Password:</label>
+              <input
+                type="password"
+                id="password"
+                name="password"
+                required
+                pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=!]).{8,}"
+                title="Password must be at least 8 characters long, contain at least one uppercase letter, one lowercase letter, one number, and one special character."
+              />
+            </div>
+            <div class="form-group">
+              <label for="confirmPassword">Confirm Password:</label>
+              <input
+                type="password"
+                id="confirmPassword"
+                name="confirmPassword"
+                required
+              />
+              <span id="error" class="error"></span>
+            </div>
+            <div class="form-group">
+              <input type="submit" value="Register" />
+            </div>
+          </form>
         </div>
       </section>
       <section>
@@ -129,9 +141,7 @@
           </figure>
         </div>
       </section>
-      <section class="products">
-        </section>
-      
+      <section class="products"></section>
     </main>
     <footer id="main-footer">&copy;NOT a real business</footer>
   </body>

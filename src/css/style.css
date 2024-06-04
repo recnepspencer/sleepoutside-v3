@@ -265,7 +265,7 @@ button {
   background: #fff;
   padding: 20px;
   border-radius: 5px;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   width: 80%;
   max-width: 500px;
 }
@@ -307,7 +307,7 @@ button {
   background: #fff;
   padding: 20px;
   border-radius: 5px;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   width: 80%;
   max-width: 500px;
   display: none;
@@ -319,8 +319,6 @@ button {
   margin-top: 10px;
   margin-bottom: 10px;
 }
-
-
 
 @media screen and (min-width: 500px) {
   body {
@@ -374,7 +372,7 @@ footer {
   justify-content: space-around;
 }
 
-.product-listings-container figcaption{
+.product-listings-container figcaption {
   text-align: center;
   font-weight: bold;
 }
