@@ -27,9 +27,30 @@
 
 
 
-  function packageItems(cart, form) {
-    console.log(form)
-    let itemPackage = {
+  function packageItems(cart) {
+    let itemPackage = []
+
+    cart.forEach((item) => {
+      itemPackage.items.push({
+        id: item.Id,
+        name: item.Name,
+        price: item.FinalPrice,
+        quantity: item.quantity
+      })
+    });
+
+    return itemPackage;
+  }
+ 
+
+  async function handleSubmit(e) {
+    console.log(this)
+    console.log(e.target)
+
+
+    const itemsSimple = packageItems(cart);
+
+    let dataPackage = {
       orderDate: new Date(),
       fname: form.fname.value,
       lname: form.lname.value,
@@ -43,29 +64,11 @@
       orderTotal: form.orderTotal.value,
       shipping: form.shipping.value,
       tax: form.tax.value,
-      items: []
+      items: itemsSimple
     };
-    console.log('itempackage',itemPackage)
-    console.log('cart', cart)
-    cart.forEach((item) => {
-      itemPackage.items.push({
-        id: item.Id,
-        name: item.Name,
-        price: item.FinalPrice,
-        quantity: item.quantity
-      })
-    });
-    console.log('itempackage AFTER FOREACH',itemPackage)
-    return itemPackage;
-  }
- 
-
-  async function handleSubmit(e) {
-
-    const itemPackage = packageItems(cart, e.target);
 
     try {
-      const res = await checkout(itemPackage)
+      const res = await checkout(dataPackage)
       console.log(res)
     } catch (error) {
       console.log(error)
