@@ -9,6 +9,8 @@
     let productCategory = getParam("category");
     let product = {};
     let selectedColor = '';
+    let errorPage = false
+
     let quantity = 1;
     let mainImageSrc = '';
     let mainImageAlt = '';
@@ -133,9 +135,10 @@
     .color-button {
       margin: 5px;
     }
-  </style>
-  
-  {#if product.Name}
+</style>
+
+{#if product?.Name}
+
     <div class="product-detail">
       <h3>{product.Brand.Name}</h3>
       <h2>{product.NameWithoutBrand}</h2>
@@ -165,7 +168,11 @@
       <input type="number" id="quantity" bind:value={quantity} min="1" />
       <button id="addToCart" on:click={addToCart}>Add to Cart</button>
     </div>
-  {:else}
+{:else if errorPage}
+    <h2>Error: Product Not Found</h2>
+    <p>Unfortunately, the product was not found. Please ensure that the product's ID is correct in the URL.</p>
+    <a href="../index.html">Home</a>
+{:else}
     <p>Loading product details...</p>
   {/if}
   
