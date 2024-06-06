@@ -20,7 +20,7 @@ export async function checkout(data) {
     body: JSON.stringify(data),
   };
 
-  const res = await fetch(`${BASE_URL}/checkout`, options)
+  const res = await fetch(`${baseURL}checkout`, options)
   return await convertToJson(res)
 }
 
