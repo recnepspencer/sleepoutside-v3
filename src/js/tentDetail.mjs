@@ -1,5 +1,5 @@
 // // Import necessary functions from other modules
-// import { findProductById } from "./productData.mjs";
+// import { findProductById } from "./externalServices.mjs";
 // import { addProductToCart } from "./product.js";
 // import { cartCount } from "./stores.mjs";
 // import { getCartCount } from "./utils.mjs";

@@ -11,7 +11,20 @@ function convertToJson(res) {
   }
 }
 
-export async function getData(category) {
+export async function checkout(data) {
+  const options = {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(data),
+  };
+
+  const res = await fetch(`${baseURL}checkout`, options)
+  return await convertToJson(res)
+}
+
+export async function getProductsByCategory(category) {
   category = category || getParam("category");
   const response = await fetch(baseURL + `products/search/${category}`);
   const data = await convertToJson(response);
@@ -19,6 +32,6 @@ export async function getData(category) {
 }
 
 export async function findProductById(id, category) {
-  const products = await getData(category);
+  const products = await getProductsByCategory(category);
   return products.find((item) => item.Id === id);
 }

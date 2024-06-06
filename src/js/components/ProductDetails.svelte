@@ -1,6 +1,6 @@
 <script>
     import { onMount } from 'svelte';
-    import { findProductById } from '../productData.mjs';
+    import { findProductById } from '../externalServices.mjs';
     import { addProductToCart } from '../product.js';
     import { getParam, getLocalStorage, setLocalStorage } from '../utils.mjs';
     import { cartCount } from "../stores.mjs";
