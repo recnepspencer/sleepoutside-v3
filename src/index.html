@@ -6,26 +6,14 @@
     <title>Sleep Outside | Home</title>
     <link rel="stylesheet" href="/css/style.css" />
     <script src="./js/main.js" type="module"></script>
+    <script src="./js/cart-superscript.js" type="module"></script>
+    <script src="./js/product-list.js" type="module"></script>
     <script src="./js/welcome-banner.js" type="module"></script>
     <script src="./js/renderHeaderFooter.js" type="module"></script>
+    <script src="./js/registrationForm.js" type="module" defer></script>
   </head>
   <body>
     <header class="divider" id="main-header"></header>
-    <nav>
-      <ul>
-        <li>
-          <a href="product_pages/product-listings.html">Sleeping Bags</a>
-        </li>
-        <li>
-          <a href="product_pages/product-listings.html?category=tents">Tents</a>
-        </li>
-        <li>
-          <a href="product_pages/product-listings.html?category=backpacks"
-            >Backpacks</a
-          >
-        </li>
-      </ul>
-    </nav>
     <main class="divider">
       <div id="welcome-banner">
         <p>
@@ -52,6 +40,107 @@
           mission is to provide you with everything you need to do this
           comfortably at an affordable price.
         </p>
+      </section>
+
+      <section class="form-container">
+        <div class="signup-form">
+          <h2>Sign Up for Our Newsletter</h2>
+          <form action="#" method="post">
+            <div class="form-group">
+              <label for="email">Email address:</label>
+              <input type="email" id="email" name="email" required />
+            </div>
+            <div class="form-group">
+              <input type="submit" value="Subscribe" />
+            </div>
+          </form>
+        </div>
+      </section>
+      <button id="showButton">
+        New to Sleep Outside? Register an Account!
+      </button>
+      <section class="form-container">
+        <div id="registration-form">
+          <h2>User Registration</h2>
+          <form id="registrationForm" action="#" method="post">
+            <div class="form-group">
+              <label for="firstName">First Name:</label>
+              <input type="text" id="firstName" name="firstName" required />
+            </div>
+            <div class="form-group">
+              <label for="lastName">Last Name:</label>
+              <input type="text" id="lastName" name="lastName" required />
+            </div>
+            <div class="form-group">
+              <label for="email">Email address:</label>
+              <input type="email" id="email" name="email" required />
+            </div>
+            <div class="form-group">
+              <label for="password">Password:</label>
+              <input
+                type="password"
+                id="password"
+                name="password"
+                required
+                pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=!]).{8,}"
+                title="Password must be at least 8 characters long, contain at least one uppercase letter, one lowercase letter, one number, and one special character."
+              />
+            </div>
+            <div class="form-group">
+              <label for="confirmPassword">Confirm Password:</label>
+              <input
+                type="password"
+                id="confirmPassword"
+                name="confirmPassword"
+                required
+              />
+              <span id="error" class="error"></span>
+            </div>
+            <div class="form-group">
+              <input type="submit" value="Register" />
+            </div>
+          </form>
+        </div>
+      </section>
+      <section>
+        <div class="product-listings-container">
+          <figure>
+            <a href="product-list/index.html?category=tents">
+              <img
+                src="https://byui-cit.github.io/wdd330/images/category-icons/noun_Tent_3544767.svg"
+                alt="Tent Icon from Noun Project: Mustofa Bayu"
+              />
+              <figcaption>Tents</figcaption>
+            </a>
+          </figure>
+          <figure>
+            <a href="product-list/index.html?category=sleeping-bags">
+              <img
+                src="https://byui-cit.github.io/wdd330/images/category-icons/noun_Sleeping%20Bag_3544775.svg"
+                alt="Sleeping Bag Icon from Noun Project: Mustofa Bayu"
+              />
+              <figcaption>Sleeping Bags</figcaption>
+            </a>
+          </figure>
+          <figure>
+            <a href="product-list/index.html?category=backpacks">
+              <img
+                src="https://byui-cit.github.io/wdd330/images/category-icons/noun_carrier%20bag_3544771.svg"
+                alt="Backpack Icon from Noun Project: Mustofa Bayu"
+              />
+              <figcaption>Backpacks</figcaption>
+            </a>
+          </figure>
+          <figure>
+            <a href="product-list/index.html?category=hammocks">
+              <img
+                src="https://byui-cit.github.io/wdd330/images/category-icons/noun_Hammock_791143.svg"
+                alt="Hammock Icon from Noun Project: Paul Richard"
+              />
+              <figcaption>Hammocks</figcaption>
+            </a>
+          </figure>
+        </div>
       </section>
       <section class="products"></section>
     </main>
