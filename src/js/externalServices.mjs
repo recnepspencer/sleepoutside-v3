@@ -11,6 +11,19 @@ function convertToJson(res) {
   }
 }
 
+export async function checkout(data) {
+  const options = {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(data),
+  };
+
+  const res = await fetch(`${BASE_URL}/checkout`, options)
+  return await convertToJson(res)
+}
+
 export async function getProductsByCategory(category) {
   category = category || getParam("category");
   const response = await fetch(baseURL + `products/search/${category}`);

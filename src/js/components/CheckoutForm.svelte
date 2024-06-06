@@ -2,74 +2,85 @@
   import { quartIn } from "svelte/easing";
   import { getLocalStorage } from "../utils.mjs";
   import { format } from "prettier";
+  import {checkout} from '../externalServices.mjs'
+
   const BASE_URL = import.meta.env.VITE_SERVER_URL
   const form = document.querySelector('form');
 
   let quantity = 0;
   let subtotal = 0;
+  let cart = []
+  let shipping = 0
+  let tax = 0
+  let orderTotal = 0
 
-  let cart = getLocalStorage("so-cart");
+  function init() {
+    cart = getLocalStorage("so-cart");
+    shipping = 10 + (quantity - 1) * 2;
+    tax = subtotal * 0.06;
+    orderTotal = subtotal + tax + shipping;
+    cart.forEach((item) => {
+      quantity += item.quantity;
+      subtotal += item.quantity * item.FinalPrice;
+    });
+  }
 
-  cart.forEach((item) => {
-    quantity += item.quantity;
-    subtotal += item.quantity * item.FinalPrice;
-  });
 
-  let shipping = 10 + (quantity - 1) * 2;
-  let tax = subtotal * 0.06;
-  let orderTotal = subtotal + tax + shipping;
 
-  function packageItems() {
+  function packageItems(cart, form) {
+    console.log(form)
     let itemPackage = {
       orderDate: new Date(),
       fname: form.fname.value,
-      lname,
-      street,
-      city,
-      state,
-      zip,
-      cardNumber,
-      expiration,
-      code,
-      orderTotal,
-      shipping,
-      tax,
+      lname: form.lname.value,
+      street: form.street.value,
+      city: form.city.value,
+      state: form.state.value,
+      zip: form.zip.value,
+      cardNumber: form.cardNumber.value,
+      expiration: form.expiration.value,
+      code: form.code.value,
+      orderTotal: form.orderTotal.value,
+      shipping: form.shipping.value,
+      tax: form.tax.value,
       items: []
     };
+    console.log('itempackage',itemPackage)
+    console.log('cart', cart)
     cart.forEach((item) => {
-        itemPackage.items.push({
-            id: item.Id,
-            name: item.Name,
-            price: item.FinalPrice,
-            quantity: item.quantity
-        })
+      itemPackage.items.push({
+        id: item.Id,
+        name: item.Name,
+        price: item.FinalPrice,
+        quantity: item.quantity
+      })
     });
+    console.log('itempackage AFTER FOREACH',itemPackage)
     return itemPackage;
   }
  
 
-  function handleSubmit(e) {
-    const itemPackage = packageItems(items);
-    console.log(packageItems(items))
+  async function handleSubmit(e) {
 
-    const options = {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(itemPackage),
-    };
+    const itemPackage = packageItems(cart, e.target);
 
-    fetch(`${BASE_URL}/checkout`, options);
+    try {
+      const res = await checkout(itemPackage)
+      console.log(res)
+    } catch (error) {
+      console.log(error)
+    }
     
   }
+
+  init()
 </script>
 
-<form>
+<form on:submit|preventDefault={handleSubmit}>
   <fieldset class="checkoutForm-shipping">
     <legend>Shipping</legend>
     <label for="fname">First Name</label>
-    <input type="text" name="fname" value="Bob" />
+    <input type="text" name="fname" />
     <label for="lname">Last Name</label>
      <input type="text" name="lname" />
     <label for="street">Street</label>
