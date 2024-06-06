@@ -5,7 +5,7 @@
     import { getParam, getLocalStorage, setLocalStorage } from '../utils.mjs';
     import { cartCount } from "../stores.mjs";
   
-    let productId = getParam("product");
+    export let productId = getParam("product");
     let productCategory = getParam("category");
     let product = {};
     let selectedColor = '';

@@ -13,7 +13,7 @@ const productId = getParam("product");
 if (productId) {
   new ProductDetails({
     target: document.querySelector(".product-detail"),
-    props: { productId },
+    props: { productId: productId },
   });
 } else {
   new ProductList({
