@@ -2,13 +2,15 @@
     import { onMount } from 'svelte';
     import { findProductById } from '../externalServices.mjs';
     import { addProductToCart } from '../product.js';
-    import { getParam } from '../utils.mjs';
+    import { getParam, getLocalStorage, setLocalStorage } from '../utils.mjs';
     import { cartCount } from "../stores.mjs";
   
     let productId = getParam("product");
     let productCategory = getParam("category");
     let product = {};
     let selectedColor = '';
+    let errorPage = false
+
     let quantity = 1;
     let mainImageSrc = '';
     let mainImageAlt = '';
@@ -59,9 +61,38 @@
         quantity: quantity,
         Colors: product.Colors.filter(color => color.ColorName === selectedColor)
       };
-      addProductToCart(cartItem);
-      console.log("Adding product to cart:", cartItem);
-      cartCount.update(n => n + 1);
+
+      // check if the item is already in the cart
+      
+      let cart = getLocalStorage("so-cart")
+      console.log(`PRE CART ${cart}`)
+      let alreadyAdded = false
+      const isSame = (a,b) => a.Id == b.Id && a.selectedColor == b.selectedColor
+
+      if (Array.isArray(cart)){
+        for (let i in cart) {
+          if (isSame(cart[i], cartItem)) {
+            cart[i].quantity += cartItem.quantity
+            setLocalStorage("so-cart", cart)
+            alreadyAdded = true
+            break
+          }
+        }
+      } else {
+        if (isSame(cart, cartItem)) {
+          cart.quantity += cartItem.quantity
+          cart = [cart]
+          setLocalStorage("so-cart", cart)
+          alreadyAdded = true
+        }
+      }
+
+      if (!alreadyAdded) {
+        addProductToCart(cartItem);
+        console.log("Adding product to cart:", cartItem);
+      }
+
+      cartCount.update(n => n + cartItem.quantity);
     }
   
     function toggleColor(event) {
@@ -104,9 +135,10 @@
     .color-button {
       margin: 5px;
     }
-  </style>
-  
-  {#if product.Name}
+</style>
+
+{#if product?.Name}
+
     <div class="product-detail">
       <h3>{product.Brand.Name}</h3>
       <h2>{product.NameWithoutBrand}</h2>
@@ -136,7 +168,11 @@
       <input type="number" id="quantity" bind:value={quantity} min="1" />
       <button id="addToCart" on:click={addToCart}>Add to Cart</button>
     </div>
-  {:else}
+{:else if errorPage}
+    <h2>Error: Product Not Found</h2>
+    <p>Unfortunately, the product was not found. Please ensure that the product's ID is correct in the URL.</p>
+    <a href="../index.html">Home</a>
+{:else}
     <p>Loading product details...</p>
   {/if}
   

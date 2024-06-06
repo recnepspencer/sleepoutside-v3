@@ -6,7 +6,6 @@ import {
 } from "./utils.mjs";
 import { findProductById } from "./externalServices.mjs";
 //import tentDetails from "./tentDetail.mjs";
-import { cartSuperscript } from "./cart-superscript";
 
 //get , set , update the local storage
 export function addProductToCart(product) {
@@ -23,7 +22,6 @@ export function addProductToCart(product) {
   cart.push(product);
   // console.log(cart);
   setLocalStorage("so-cart", cart);
-  cartSuperscript();
 }
 // add to cart button event handler
 async function addToCartHandler(e) {
