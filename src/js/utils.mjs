@@ -1,6 +1,7 @@
 import { findProductById } from "./externalServices.mjs";
 import MainHeader from './components/MainHeader.svelte';
 import MainFooter from './components/MainFooter.svelte';
+import AlertMessage from './components/AlertMessage.svelte';
 
 // wrapper for querySelector...returns matching element
 export function qs(selector, parent = document) {
@@ -71,3 +72,16 @@ export function getCartCount() {
 }
 
 const productId = getParam('id');
+
+export function alertMessage(message, scroll = true, duration = 10000) {
+  const alert = new AlertMessage({
+    target: document.body,
+    props: { message },
+  });
+
+  if (scroll) window.scrollTo(0, 0);
+
+  setTimeout(() => {
+    alert.$destroy();
+  }, duration);
+}

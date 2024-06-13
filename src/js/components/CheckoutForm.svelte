@@ -2,9 +2,10 @@
   import { quartIn } from "svelte/easing";
   import { getLocalStorage } from "../utils.mjs";
   import { format } from "prettier";
-  import { checkout } from '../externalServices.mjs'
+  import { checkout } from "../externalServices.mjs";
+  import { alertMessage } from "../utils.mjs";
 
-  const BASE_URL = import.meta.env.VITE_SERVER_URL
+  const BASE_URL = import.meta.env.VITE_SERVER_URL;
 
   let quantity = 0;
   let subtotal = 0;
@@ -29,7 +30,7 @@
       id: item.Id,
       name: item.Name,
       price: item.FinalPrice.toFixed(2),
-      quantity: item.quantity
+      quantity: item.quantity,
     }));
   }
 
@@ -53,23 +54,38 @@
       orderTotal: orderTotal.toFixed(2),
       shipping: shipping.toFixed(2),
       tax: tax.toFixed(2),
-      items: items
+      items: items,
     };
 
     console.log(dataPackage.items);
 
     try {
       const res = await checkout(dataPackage);
+      const successMessage = `Order was successfully placed!`;
+      alertMessage(successMessage);
+      localStorage.removeItem("so-cart");
       console.log(res);
     } catch (error) {
-      console.log(error);
+      if (error.name === "servicesError") {
+        let errorMessage = "Error: <br>";
+        if (typeof error.message === 'object') {
+          for (let key in error.message) {
+            errorMessage += `${error.message[key]}<br>`;
+          }
+        } else {
+          errorMessage += error.message;
+        }
+        alertMessage(errorMessage, true);
+      } else {
+        alertMessage("An unexpected error occurred. Please try again.", true);
+      }
     }
   }
 
   init();
 </script>
 
-<form on:submit={handleSubmit}>
+<form on:submit={handleSubmit} class="form-container">
   <fieldset class="checkoutForm-shipping">
     <legend>Shipping</legend>
     <label for="fname">First Name</label>
@@ -107,3 +123,127 @@
   </fieldset>
   <button type="submit" class="checkout">Checkout</button>
 </form>
+
+<style>
+  :root {
+  --font-body: Arial, Helvetica, sans-serif;
+  --font-headline: Haettenschweiler, "Arial Narrow Bold", sans-serif;
+  /* colors */
+  --primary-color: #f0a868;
+  --secondary-color: #525b0f;
+  --tertiary-color: #a4b8c4;
+  --light-grey: #d0d0d0;
+  --dark-grey: #303030;
+
+  /* sizes */
+  --font-base: 18px;
+  --small-font: 0.8em;
+  --large-font: 1.2em;
+}
+
+/* Checkout Form Styles */
+.checkoutForm-shipping,
+.checkoutForm-payment,
+.checkoutForm-summary {
+  border: 1px solid var(--light-grey);
+  border-radius: 5px;
+  padding: 1em;
+  margin: 1em 0;
+}
+
+.checkoutForm-shipping legend,
+.checkoutForm-payment legend,
+.checkoutForm-summary legend {
+  font-weight: bold;
+  color: var(--secondary-color);
+}
+
+.checkoutForm-shipping label,
+.checkoutForm-payment label {
+  display: block;
+  margin-bottom: 0.5em;
+  font-weight: bold;
+}
+
+.checkoutForm-shipping input,
+.checkoutForm-payment input {
+  width: calc(100% - 10px);
+  padding: 0.5em;
+  border: 1px solid var(--light-grey);
+  border-radius: 5px;
+  margin-bottom: 1em;
+}
+
+.checkoutForm-summary p {
+  display: flex;
+  justify-content: space-between;
+  margin: 0.5em 0;
+  font-weight: bold;
+}
+
+.checkoutForm-summary p:last-child {
+  border-top: 1px solid var(--light-grey);
+  padding-top: 1em;
+  margin-top: 1em;
+  font-size: var(--large-font);
+}
+
+.checkoutForm-summary p:nth-child(odd) {
+  color: var(--secondary-color);
+}
+
+.checkout {
+  width: 100%;
+  padding: 1em;
+  background-color: var(--primary-color);
+  color: white;
+  font-size: var(--large-font);
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 1em;
+  display: block;
+  text-align: center;
+}
+
+.checkout:hover {
+  background-color: #d4895e;
+}
+
+.checkout:active {
+  background-color: white; 
+  color: var(--primary-color);
+  border: 1px solid var(--primary-color);
+}
+
+/* Responsive Styles */
+@media screen and (min-width: 768px) {
+  .checkoutForm-shipping,
+  .checkoutForm-payment,
+  .checkoutForm-summary {
+    width: 45%;
+    margin: 1em auto;
+  }
+
+  form {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+
+  .checkout {
+    width: auto;
+    max-width: 300px;
+    margin: 1em auto 0 auto;
+    text-align: center;
+  }
+
+  .form-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+</style>
