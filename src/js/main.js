@@ -18,6 +18,6 @@ if (productId) {
 } else {
   new ProductList({
     target: document.querySelector(".products"),
-    props: { category: category },
+    props: { category: null },
   });
 }

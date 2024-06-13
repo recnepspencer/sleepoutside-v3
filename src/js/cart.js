@@ -81,6 +81,21 @@ function removeItem(btn) {
 
   setLocalStorage("so-cart", cart);
   renderCartContents();
+  disableCheckoutBtn();
 }
 
+function disableCheckoutBtn() {
+  let cart = getLocalStorage("so-cart");
+  const btnEl = document.getElementById("checkout-btn");
+  btnEl.disabled = !cart.length;
+  btnEl.classList.toggle("disabled-btn", !cart.length);
+}
+
+let soCart = getLocalStorage("so-cart");
+if (!Array.isArray(soCart)) {
+  let replaceCart = [];
+  replaceCart.push(soCart);
+  setLocalStorage("so-cart", replaceCart);
+}
 renderCartContents();
+disableCheckoutBtn();

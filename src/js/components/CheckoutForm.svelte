@@ -20,7 +20,7 @@
       quantity += item.quantity;
       subtotal += item.quantity * item.FinalPrice;
     });
-    shipping = 10 + (quantity - 1) * 2;
+    shipping = quantity > 0 ? 10 + (quantity - 1) * 2 : 0
     tax = subtotal * 0.06;
     orderTotal = subtotal + tax + shipping;
   }
