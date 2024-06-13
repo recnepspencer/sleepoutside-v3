@@ -235,6 +235,7 @@
     max-width: 300px;
     margin: 1em auto 0 auto;
     text-align: center;
+    margin-bottom: 40px;
   }
 
   .form-container {

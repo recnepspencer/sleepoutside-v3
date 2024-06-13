@@ -12,6 +12,7 @@
   width: 300px;
   cursor: pointer;
   transition: transform 0.2s;
+  border-radius: 5px;
 }
 
 .product-card:hover {
@@ -23,3 +24,4 @@
   height: 200px;
   object-fit: cover;
 }
+
