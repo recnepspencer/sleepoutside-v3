@@ -32,25 +32,33 @@
     document.querySelector(".name-sort").classList.remove("active");
     document.querySelector(".price-sort").classList.add("active");
   }
+
+  function formatTitle(str){
+    return str.split("-").map((item) => {
+      return item.charAt(0).toUpperCase() + item.slice(1)
+    }).join(' ')
+  }
 </script>
 
-<h2>Top Products</h2>
+<h2>{category ? formatTitle(category) : "Top Products"}</h2>
 {#await promise}
   <p>Loading</p>
 {:then}
+  {#if products.length}
   <div class="none active"></div>
   <div class="sort-selection-container">
     <p>Sort by:</p>
     <button on:click={selectName} class="sort-selection name-sort">Name</button>
     <button on:click={selectPrice} class="sort-selection price-sort"
-      >Price</button
+    >Price</button
     >
   </div>
   <ul class="product-list">
     {#each products as pro (pro.Id)}
-      <li class="product-card"><ProductSummary {pro} /></li>
+    <li class="product-card"><ProductSummary {pro} /></li>
     {/each}
   </ul>
+  {/if}
 {:catch error}
   <p>{error}</p>
 {/await}
