@@ -4,6 +4,7 @@
     import { addProductToCart } from '../product.js';
     import { getParam, getLocalStorage, setLocalStorage } from '../utils.mjs';
     import { cartCount } from "../stores.mjs";
+    import {alertMessage} from '../utils.mjs';
   
     export let productId = getParam("product");
     let productCategory = getParam("category");
@@ -91,6 +92,7 @@
         addProductToCart(cartItem);
         console.log("Adding product to cart:", cartItem);
       }
+      alertMessage("Product added to cart!")
 
       cartCount.update(n => n + cartItem.quantity);
     }

@@ -8,7 +8,7 @@
       top: 0;
       left: 0;
       right: 0;
-      background-color: var(--primary-color);
+      background-color: rgba(255, 185, 54, 0.754);
       color: white;
       padding: 1em;
       text-align: center;
