@@ -40,3 +40,39 @@ export async function findProductById(id, category) {
   const products = await getProductsByCategory(category);
   return products.find((item) => item.Id === id);
 }
+
+
+export async function loginRequest(creds) {
+  const response = await fetch('http://server-nodejs.cit.byui.edu:3000/login', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(creds)
+  });
+
+  if (!response.ok) {
+    throw new Error('Login request failed');
+  }
+
+  const data = await response.json();
+  console.log(data.accessToken);
+  localStorage.setItem('so_token', data.accessToken);
+  return `Bearer ${data.accessToken}`;
+}
+
+
+export async function getOrders() {
+  const token = localStorage.getItem('so_token');
+  const response = await fetch(baseURL + 'orders', {
+    headers: {
+      Authorization: `Bearer ${token}`
+    }
+  });
+  if (!response.ok) {
+    throw new Error('Failed to fetch orders');
+  }
+  const data = await response.json();
+  console.log(data.Result);
+  return data.Result;
+}
