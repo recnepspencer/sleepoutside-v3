@@ -1,11 +1,18 @@
 <script>
-  import { getProductsByCategory } from "../externalServices.mjs";
+  import { getProductsByCategory, getProductsBySearch } from "../externalServices.mjs";
   import ProductSummary from "./ProductSummary.svelte";
+  import { getParam } from "../utils.mjs";
 
   export let category;
 
   $: products = [];
-  let promise = getProductsByCategory(category);
+  let promise
+  if (getParam("category") == 'search'){
+    let search = getParam('search')
+    promise = getProductsBySearch(search)
+  } else {
+    promise = getProductsByCategory(category);
+  }
 
   promise.then((pros) => {
     products = pros;
@@ -55,7 +62,7 @@
   </div>
   <ul class="product-list">
     {#each products as pro (pro.Id)}
-    <li class="product-card"><ProductSummary {pro} /></li>
+    <li class="product-card"><ProductSummary {pro} category={category == "search" ? pro.Category : getParam("category")} /></li>
     {/each}
   </ul>
   {/if}

@@ -1,11 +1,25 @@
 <script>
     import { cartCount } from "../stores.mjs";
+
+    function searchSubmit(event){
+        const search = event.target.search.value
+        if (search !== '') {
+            // code from https://www.w3schools.com/howto/howto_js_redirect_webpage.asp
+            window.location.replace(`../product-list/index.html?category=search&search=${search}`)
+        }
+    }
 </script>
 
 <div class="logo">
     <img src="/images/noun_Tent_2517.svg" alt="tent for logo" />
     <a href="/index.html"> Sleep<span class="highlight">Outside</span></a>
 </div>
+<form class="search-form" on:submit|preventDefault={searchSubmit}>
+    <div class="search-flex">
+        <input placeholder="Search by product Id..." id="searchbar" type="text" name="search">
+        <button type="submit">Go!</button>
+    </div>
+</form>
 <div class="cart">
     <a href="../cart/index.html">
 
@@ -37,3 +51,18 @@
     </div>
     </a>
 </div>
+
+<style>
+    .search-form {
+        align-self: center;
+    }
+    .search-flex {
+        display: flex;
+        gap: 5px;
+    }
+    .search-flex button {
+        padding:5px;
+        font-size: x-small;
+        border-radius: 15px;
+    }
+</style>
