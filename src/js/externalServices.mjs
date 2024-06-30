@@ -41,6 +41,39 @@ export async function findProductById(id, category) {
   return products.find((item) => item.Id === id);
 }
 
+export async function getRecommendedProducts(excludeId) {
+  let promises = []
+  let allProducts = []
+
+  promises.push(getProductsByCategory("tents"))
+  promises.push(getProductsByCategory("sleeping-bags"))
+  promises.push(getProductsByCategory("backpacks"))
+  promises.push(getProductsByCategory("hammocks"))
+
+  for (let p in promises) {
+    allProducts = [...allProducts, ...await promises[p]]
+  }
+
+  let idsToExclude = [excludeId]
+  // using code from https://www.w3schools.com/JS/js_random.asp
+  let amountToInclude = Math.floor(Math.random() * 2) + 2
+
+  let recommenedProduct = {}
+  let recommenedProducts = []
+  // using code from https://www.w3schools.com/JS/js_loop_for.asp
+  for (let i = 0; i < amountToInclude; i++) {
+    
+    do {
+      // using code from https://www.w3schools.com/JS/js_random.asp
+      recommenedProduct = allProducts[Math.floor(Math.random() * allProducts.length)]
+    } while (idsToExclude.find((id) => {return recommenedProduct.Id === id}))
+
+    idsToExclude.push(recommenedProduct.Id)
+    recommenedProducts.push(recommenedProduct)
+  }
+
+  return recommenedProducts
+}
 
 export async function loginRequest(creds) {
   const response = await fetch('http://server-nodejs.cit.byui.edu:3000/login', {
