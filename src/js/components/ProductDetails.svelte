@@ -1,10 +1,11 @@
 <script>
     import { onMount } from 'svelte';
-    import { findProductById } from '../externalServices.mjs';
+    import { findProductById, getRecommendedProducts } from '../externalServices.mjs';
     import { addProductToCart } from '../product.js';
     import { getParam, getLocalStorage, setLocalStorage } from '../utils.mjs';
     import { cartCount } from "../stores.mjs";
     import {alertMessage} from '../utils.mjs';
+    import ProductSummary from "./ProductSummary.svelte";
   
     export let productId = getParam("product");
     let productCategory = getParam("category");
@@ -16,6 +17,8 @@
     let mainImageSrc = '';
     let mainImageAlt = '';
   
+    let promise = getRecommendedProducts(productId)
+
     function getProperImageSize(product) {
       const screenWidth = window.innerWidth;
   
@@ -137,6 +140,9 @@
     .color-button {
       margin: 5px;
     }
+    .product-list {
+      flex-wrap: nowrap;
+    }
 </style>
 
 {#if product?.Name}
@@ -170,6 +176,16 @@
       <input type="number" id="quantity" bind:value={quantity} min="1" />
       <button id="addToCart" on:click={addToCart}>Add to Cart</button>
     </div>
+      <h3>Recommended Products</h3>
+      {#await promise}
+        <p>Loading recommended products...</p>
+      {:then recommendedProducts} 
+        <ul class="product-list">
+          {#each recommendedProducts as recPro}
+          <li class="product-card"><ProductSummary pro={recPro} category={recPro.Category}/></li>
+          {/each}
+        </ul>
+      {/await}
 {:else if errorPage}
     <h2>Error: Product Not Found</h2>
     <p>Unfortunately, the product was not found. Please ensure that the product's ID is correct in the URL.</p>
