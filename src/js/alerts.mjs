@@ -10,7 +10,7 @@ async function generateAlerts(){
     let shouldGenerate = true
 
     // used code from ./productData.mjs
-    const fetched = await fetch("../public/json/alerts.json")
+    const fetched = await fetch("/json/alerts.json")
     let alertData
     // TODO: check if lines 15-23 are done correct
     try{
