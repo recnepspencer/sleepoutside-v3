@@ -326,6 +326,12 @@ button {
   margin-bottom: 10px;
 }
 
+/* Start alerts */
+
+.alert-list p {
+  padding: 10px;
+}
+
 @media screen and (min-width: 500px) {
   body {
     max-width: 1080px;
