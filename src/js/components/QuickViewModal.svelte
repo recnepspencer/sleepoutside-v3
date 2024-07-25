@@ -24,6 +24,7 @@
     <button type="button" on:click={() => {dispatch("hide")}} class="close-modal">X</button>
     
     <p class="title middle">{pro.Name}</p>
+    <p class="middle">Product Id: <strong>{pro.Id}</strong></p>
     <p class="middle price-wrap"><span class="price">{@html applyDiscount(pro)}</span></p>
     <div>
         {#each pro.Colors as color}
