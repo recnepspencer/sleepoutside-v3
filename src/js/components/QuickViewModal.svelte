@@ -5,7 +5,6 @@
     export let isShown
     
     const dispatch = createEventDispatcher()
-    console.log(pro)
 
     // Using Spencer's code...
     function applyDiscount(product) {
@@ -51,6 +50,9 @@
         top: 0;
         bottom: 0;
         overflow-y: scroll;
+        /* using code from https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_text/Wrapping_breaking_text */
+        overflow-x: hidden;
+        overflow-wrap: break-word;
     }
 
     .center {
